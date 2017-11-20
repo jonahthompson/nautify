@@ -1,3 +1,35 @@
-<h1>Jobs#index</h1>
-<p>Find me in app/views/jobs/index.html.erb</p>
-<%= link_to "New Job", new_job_path %>
+<div class="container-fluid">
+	<div class="row">
+		<% @jobs.each do |job| %>
+			<div class="col-3">
+				<div class="card">
+			    <!--Card image-->
+			    <div class="view overlay hm-white-slight">
+			        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+			        <a href="#">
+			            <div class="mask"></div>
+			        </a>
+			    </div>
+
+			    <!--Card content-->
+			    <div class="card-body">
+			        <!--Title-->
+			        <h4 class="card-title"><%= job.id %></h4>
+			        <!--Text-->
+			        <p class="card-text">
+			        	<ul>
+			        		<li>Description: <%= job.description %></li>
+			        		<li>Origin: <%= job.origin %></li>
+			        		<li>Destination: <%= job.destination %></li>
+			        		<li>Cost: $<%= job.cost %></li>
+			        		<li>Load: <%= job.load %></li>
+			        	</ul>
+			        </p>
+			        <%= link_to "View", job_path(job), class: "btn color_light_blue" %>
+			    </div>
+				</div>
+			</div>
+		<% end %>
+	<%= link_to "New Job", new_job_path %>
+	</div>
+</div>

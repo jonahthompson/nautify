@@ -9,6 +9,11 @@ class JobsController < ApplicationController
 
   def create
     @job = current_user.jobs.new(job_params)
+    if @job.save!
+      redirect_to current_user
+    else
+      render new_job_path
+    end 
   end
 
   def show
