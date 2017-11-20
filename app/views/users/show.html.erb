@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark red">
+        <!-- Navbar brand -->
+        <%= link_to "Nautify", root_path, class: "navbar-brand" %>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Boats</a>
+                </li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+
+                        <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+                        <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+                    </div>
+                </li>
+            </ul>
+            <!-- Links -->
+            <!-- Search form -->
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+        <!-- Collapsible content -->
+    </nav>
+  </div>
+</div>
+<div class="container-fluid parallax">
+    <div class="container">
+        <div class="row">
+        	<div class="col-6 jobs_col">
+        		<div class="card">
+        	    <h3 class="card-header color_light_blue white-text">Jobs</h3>
+        	    <div class="card-body">
+        	        <h4 class="card-title">Got a boat? Need a job?</h4>
+        	        <p class="card-text">Browse hundreds of contracts and find the right job for your boat.</p>
+        	        <%= link_to "Browse Jobs", jobs_path, class: 'btn color_light_blue' %>
+        	    </div>
+        		</div>
+        	</div>
+        	<div class="col-6 boats_col">
+        		<div class="card">
+        		  <h3 class="card-header color_blue white-text">Boats</h3>
+        		  <div class="card-body">
+        		      <h4 class="card-title">Got a job? Need a boat?</h4>
+        		      <p class="card-text">Browse hundreds of boats and find the right boat for your job.</p>
+        		      <%= link_to "Browse Boats", boats_path, class: 'btn color_blue' %>
+        		  </div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>
+<div class="home_content">
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <%= link_to "New User", new_user_registration_path %>
+</div>
+<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+<%= link_to "Home", root_path %>
