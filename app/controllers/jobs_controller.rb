@@ -17,9 +17,11 @@ class JobsController < ApplicationController
   end
 
   def show
+    @job = Job.find(params[:id])
   end
 
   def edit
+    @job = Job.find(params[:id])  
   end
 
   def update
@@ -31,7 +33,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:description, :origin, :destination, :cost, :load, :user_id)
+    params.require(:job).permit(:description, :origin, :destination, :cost, :load, :user_id, :avatar)
   end
 end
 

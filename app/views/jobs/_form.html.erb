@@ -1,0 +1,40 @@
+<% if @job.errors.full_messages.any? %>
+	<ul>
+		<% @job.errors.full_messages.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_with model: @job, local: true do |f| %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.text_field :description, placeholder: 'Description' %>
+	<%= f.text_field :cost, placeholder: 'Cost' %>
+	<%= f.text_field :load, placeholder: 'Load' %>
+
+	<div class="field">
+	  <% if @job.avatar.file? %>
+	    <p>Your current image: </p>
+	    <%= image_tag current_user.avatar.url(:medium) %>
+	   <% end %>
+	    <%= f.file_field :avatar %>
+  </div>
+
+	<%= f.select(:origin) do %>
+  	<option value="" disabled selected>Job Origin</option>
+  	
+		<% [['Los Angeles, CA'], ['San Diego, CA'], ['Sydney, AU'], ['Tokyo, JP'], ['Tianjin, CN']].each do |c| %>
+			<option value="<%= c.first %>"><%= c.first %></option>
+   	<% end %>
+  <% end %>
+
+  <%= f.select(:destination) do %>
+  	<option value="" disabled selected>Job Destination</option>
+  	
+		<% [['Los Angeles, CA'], ['San Diego, CA'], ['Sydney, AU'], ['Tokyo, JP'], ['Tianjin, CN']].each do |c| %>
+			<option value="<%= c.first %>"><%= c.first %></option>
+   	<% end %>
+  <% end %>
+	<%= f.submit "Add Job", :class => "btn waves-effect waves-light blue darken-3" %>
+	
+<% end %>

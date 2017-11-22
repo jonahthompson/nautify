@@ -33,3 +33,7 @@ cancel_user_registration GET    /users/cancel(.:format)        users/registratio
                          PATCH  /jobs/:id(.:format)            jobs#update
                          PUT    /jobs/:id(.:format)            jobs#update
                          DELETE /jobs/:id(.:format)            jobs#destroy
+               contracts POST   /contracts(.:format)           contracts#create
+                contract PATCH  /contracts/:id(.:format)       contracts#update
+                         PUT    /contracts/:id(.:format)       contracts#update
+                         DELETE /contracts/:id(.:format)       contracts#destroy
