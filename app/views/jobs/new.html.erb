@@ -3,19 +3,7 @@
 		<div class="col"></div>
 		<div class="col-10">
 			<h2>New Job</h2>
-			<%= form_for @job do |f| %>
-				<%= f.label :description, "Description" %>
-				<%= f.text_field :description %>
-				<%= f.label :origin, "Origin" %>
-				<%= f.text_field :origin %>
-				<%= f.label :destination, "Destination" %>
-				<%= f.text_field :destination %>
-				<%= f.label :cost, "Cost" %>
-				<%= f.text_field :cost %>
-				<%= f.label :load, "Load" %>
-				<%= f.text_field :load %>
-				<%= f.submit "Submit" %>
-			<% end %>
+            <%= render 'form' %>
 		</div>
 		<div class="col"></div>
 	</div>

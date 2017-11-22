@@ -1,2 +1,23 @@
-<h1>Boats#show</h1>
-<p>Find me in app/views/boats/show.html.erb</p>
+<div class="card">
+  <!--Card image-->
+  <div class="view overlay hm-white-slight">
+      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+      <a href="#">
+          <div class="mask"></div>
+      </a>
+  </div>
+
+  <!--Card content-->
+  <div class="card-body">
+      <!--Title-->
+      <h4 class="card-title"><%= @boat.name %></h4>
+      <!--Text-->
+      <p class="card-text">
+      	<ul>
+      		<li>Capacity: <%= @boat.capacity %></li>
+      		<li>Location: <%= @boat.location %></li>
+      	</ul>
+      </p>
+
+  </div>
+</div>
