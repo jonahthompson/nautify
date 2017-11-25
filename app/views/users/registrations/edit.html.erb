@@ -40,6 +40,7 @@
       </div>
 
       <div class="field">
+        <p>Profile picture</p>
         <% if resource.avatar.file? %>
           <p>Your current image: </p>
           <%= image_tag current_user.avatar.url(:medium) %>

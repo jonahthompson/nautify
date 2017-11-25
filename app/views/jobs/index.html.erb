@@ -26,7 +26,27 @@
 			        	</ul>
 			        </p>
 			        <%= link_to "View", job_path(job), class: "btn color_light_blue" %>
-			        <%= link_to "Add Boat", job_path(job), class: "btn color_blue" %>
+
+							<% if current_user %>
+								<h3>Quick Add</h3>
+								<%= form_with model: @contract do |f| %>
+									<%= f.hidden_field :job_id, value: job.id %>
+									<%= f.select(:boat_id) do %>
+										<option value="" disabled selected>Select a Ship</option>
+										<% current_user.boats.each do |boat| %>
+											<option value="<%= boat.id %>"><%= boat.name %> | Capacity: <%= boat.capacity %></option>
+										<% end %><!-- each loop -->
+									<% end %><!-- Select Do -->
+									<%= f.submit "Add Boat" %>
+								<% end %><!-- form -->
+							<% end %><!-- if -->
+							<h3>Contracted Boats</h3>
+							<% container_count = 0 %>
+							<% job.contracts.each do |contract| %>
+								<p><%= contract.boat.name %> | Capacity: <%= contract.boat.capacity %></p>
+								<% container_count = contract.boat.capacity + container_count %>
+							<% end %>
+						<p>Containers left to ship: <%= job.load - container_count %></p>
 			    </div>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 class BoatsController < ApplicationController
   def index
     @boats = Boat.all
+    @contract = Contract.new
   end
 
   def new
@@ -10,7 +11,7 @@ class BoatsController < ApplicationController
   def create
     @boat = current_user.boats.new(boat_params)
     if @boat.save!
-      redirect_to current_user
+      redirect_to boats_path
     else
       render new_boat_path
     end 
@@ -26,11 +27,18 @@ class BoatsController < ApplicationController
 
   def update
     @boat = Boat.find(params[:id])
-    @boat.update(boat_params)
-    redirect_to @boat
+    respond_to do |format|
+      @boat.update(boat_params)
+      format.js
+    end
   end
 
   def destroy
+    respond_to do |format|
+      @boat = Boat.find(params[:id]).destroy
+      format.js
+      format.html {redirect_to boats_path}
+    end
   end
 
   private
