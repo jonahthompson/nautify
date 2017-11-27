@@ -11,9 +11,10 @@ class JobsController < ApplicationController
   def create
     @job = current_user.jobs.new(job_params)
     respond_to do |format|
-      @job.new(job_params)
-      if @job.save!
+      Job.new(job_params)
+      if @job.save
         format.js
+        format.html {redirect_to jobs_path}
       else
         render new_job_path
       end
@@ -32,7 +33,8 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     respond_to do |format|
       @job.update(job_params)
-      format.js
+      format.js 
+      format.html {render jobs_path}
     end
   end
 

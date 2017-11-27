@@ -16,50 +16,7 @@
 			</div>
 		</div>
 		<% @boats.each do |boat| %>
-			<div class="col-3">
-				<div class="card">
-			    <div class="view overlay hm-white-slight">
-		        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-		        <a href="#">
-		          <div class="mask"></div>
-		        </a>
-			    </div>
-			    <div class="card-body">
-		        <h4 class="card-title"><%= boat.name %></h4>
-		        <p class="card-text">
-		        	<ul>
-		        		<li>Location: <%= boat.location %></li>
-		        		<li>Capacity: <%= boat.capacity %></li>
-		        	</ul>
-		        </p>
-		        <% if current_user %>
-							<h3>Quick Add</h3>
-							<%= form_with model: @contract do |f| %>
-								<%= f.hidden_field :boat_id, value: boat.id %>
-								<%= f.select(:job_id) do %>
-									<option value="" disabled selected>Select a Job</option>
-									<% current_user.jobs.each do |job| %>
-										<option value="<%= job.id %>"><%= job.name %></option>
-									<% end %>
-								<% end %>
-								<%= f.submit "Add Job" %>
-							<% end %>
-						<% end %>
-						<% if boat.contracts.any? %>
-						<h3>Contracted Jobs</h3>
-						<% end %>
-						<% container_count = 0 %>
-						<ol>
-						<% boat.contracts.each do |contract| %>
-							<li><%= contract.job.description %></li>
-							<% container_count = contract.boat.capacity + container_count %>
-						<% end %>
-						</ol>
-						<%= link_to "Edit Boat", edit_boat_path(boat) %>
-						<%= link_to "Delete Boat", boat_path(boat), method: :delete %>
-			    </div>
-				</div>
-			</div>
+			<%= render boat %>
 		<% end %>
 	</div>
 </div>

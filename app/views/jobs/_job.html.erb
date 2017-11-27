@@ -1,36 +1,47 @@
 <div class="col-3">
 	<div class="card">
     <div class="view overlay hm-white-slight">
-      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-      <a href="#">
-        <div class="mask"></div>
-      </a>
+      <%= image_tag job.avatar.url(:medium) %>
     </div>
     <div class="card-body">
     	<%= form_with model: job, class: "job_edit_form" do |f| %>
       <h4 class="card-title"><%= job.name %></h4>
       <p class="card-text">
       	<ul>
-      		<%= f.text_field :description, placeholder: job.description, disabled: true, class: "job_edit_field first_field" %>
-      		<%= f.text_field :origin, placeholder: job.origin, disabled: true, class: "job_edit_field" %>
-      		<%= f.text_field :destination, placeholder: job.destination, disabled: true, class: "job_edit_field" %>
+      		<%= f.text_area :description, placeholder: job.description, disabled: true, class: "job_edit_field first_field" %>
+      		<%= f.select(:location) do %>
+  					<option value="" disabled selected> <%= job.origin %></option>
+						<% [['Los Angeles, CA'], ['San Diego, CA'], ['Sydney, AU'], ['Tokyo, JP'], ['Tianjin, CN']].each do |c| %>
+							<option value="<%= c.first %>"><%= c.first %></option>
+   					<% end %>
+  				<% end %><br/>
+      		<%= f.select(:destination) do %>
+  					<option value="" disabled selected> <%= job.destination %></option>
+						<% [['Los Angeles, CA'], ['San Diego, CA'], ['Sydney, AU'], ['Tokyo, JP'], ['Tianjin, CN']].each do |c| %>
+							<option value="<%= c.first %>"><%= c.first %></option>
+   					<% end %>
+  				<% end %>
       		<%= f.text_field :cost, placeholder: job.cost, disabled: true, class: "job_edit_field" %>
       		<%= f.text_field :load, placeholder: job.load, disabled: true, class: "job_edit_field" %>
       	</ul>
       </p>
+      <% if current_user %>
       <button class="edit_job">Edit Job</button>
+      <!-- <button class="save_job">Save Job</button> -->
+      <%= f.submit "Save Job", class: "save_job" %>
+      <% end %>
       <% end %>
 			<% if current_user %>
 				<h3>Quick Add</h3>
 				<%= form_with model: @contract do |f| %>
 					<%= f.hidden_field :job_id, value: job.id %>
 					<%= f.select(:boat_id) do %>
-						<option value="" disabled selected>Select a Ship</option>
+						<option value="" disabled selected>Select a Boat</option>
 						<% current_user.boats.each do |boat| %>
 							<option value="<%= boat.id %>"><%= boat.name %> | Capacity: <%= boat.capacity %></option>
 						<% end %>
 					<% end %>
-					<%= f.submit "Add Boat" %>
+					<%= f.submit "Add Boat", class: "boat_submit" %>
 				<% end %>
 			<% end %>
 			<% if job.contracts.any? %>
