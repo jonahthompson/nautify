@@ -1,56 +1,22 @@
 <div class="container-fluid">
 	<div class="row">
-		<% @jobs.each do |job| %>
-			<div class="col-3">
-				<div class="card">
-			    <!--Card image-->
-			    <div class="view overlay hm-white-slight">
-			        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-			        <a href="#">
-			            <div class="mask"></div>
-			        </a>
-			    </div>
-
-			    <!--Card content-->
-			    <div class="card-body">
-			        <!--Title-->
-			        <h4 class="card-title"><%= job.id %></h4>
-			        <!--Text-->
-			        <p class="card-text">
-			        	<ul>
-			        		<li>Description: <%= job.description %></li>
-			        		<li>Origin: <%= job.origin %></li>
-			        		<li>Destination: <%= job.destination %></li>
-			        		<li>Cost: $<%= job.cost %></li>
-			        		<li>Load: <%= job.load %></li>
-			        	</ul>
-			        </p>
-			        <%= link_to "View", job_path(job), class: "btn color_light_blue" %>
-
-							<% if current_user %>
-								<h3>Quick Add</h3>
-								<%= form_with model: @contract do |f| %>
-									<%= f.hidden_field :job_id, value: job.id %>
-									<%= f.select(:boat_id) do %>
-										<option value="" disabled selected>Select a Ship</option>
-										<% current_user.boats.each do |boat| %>
-											<option value="<%= boat.id %>"><%= boat.name %> | Capacity: <%= boat.capacity %></option>
-										<% end %><!-- each loop -->
-									<% end %><!-- Select Do -->
-									<%= f.submit "Add Boat" %>
-								<% end %><!-- form -->
-							<% end %><!-- if -->
-							<h3>Contracted Boats</h3>
-							<% container_count = 0 %>
-							<% job.contracts.each do |contract| %>
-								<p><%= contract.boat.name %> | Capacity: <%= contract.boat.capacity %></p>
-								<% container_count = contract.boat.capacity + container_count %>
-							<% end %>
-						<p>Containers left to ship: <%= job.load - container_count %></p>
-			    </div>
-				</div>
+		<div class="col-3">
+			<div class="card_light_blue">
+		    <div class="view overlay hm-white-slight">
+	        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+	        <a href="#">
+	          <div class="mask"></div>
+	        </a>
+		    </div>
+		    <div class="card-body">
+	        <h4 class="card-title white-text">New Job</h4>
+	        <p class="card-text white-text">Select this option to create a new job for your profile</p>
+	        <%= link_to "New Job", new_job_path, class: "btn btn-primary new_boat" %>
+		    </div>
 			</div>
+		</div>
+		<% @jobs.each do |job| %>
+			<%= render job %>
 		<% end %>
-	<%= link_to "New Job", new_job_path %>
 	</div>
 </div>

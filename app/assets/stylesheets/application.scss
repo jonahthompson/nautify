@@ -16,15 +16,16 @@
 @import "bootstrap";
 
 body, html {
-    height: 100%;
+  height: 100%;
+  background-color: #D7DADB;
 }
 .parallax { 
-    background-image: url("shipping.jpg");
-    height: 450px; 
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("shipping.jpg");
+  height: 500px; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .welcome_user {
 	text-align: center;
@@ -37,7 +38,21 @@ body, html {
 }
 .home_content {
 	background-color: #D7DADB;
-	height: 600px;
+	height: 500px;
 	width: 100%;
 	position: relative;
+}
+.card_blue {
+	background-color: #2C3E50;
+}
+.card_light_blue {
+	background-color: #6DBCDB;
+}
+.welcome {
+	text-align: center;
+}
+.sign_up_home {
+	position: relative;
+	left: 40px;
+	top: 50px;
 }

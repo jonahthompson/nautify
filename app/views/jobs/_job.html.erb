@@ -1,0 +1,48 @@
+<div class="col-3">
+	<div class="card">
+    <div class="view overlay hm-white-slight">
+      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+      <a href="#">
+        <div class="mask"></div>
+      </a>
+    </div>
+    <div class="card-body">
+    	<%= form_with model: job, class: "job_edit_form" do |f| %>
+      <h4 class="card-title"><%= job.name %></h4>
+      <p class="card-text">
+      	<ul>
+      		<%= f.text_field :description, placeholder: job.description, disabled: true, class: "job_edit_field first_field" %>
+      		<%= f.text_field :origin, placeholder: job.origin, disabled: true, class: "job_edit_field" %>
+      		<%= f.text_field :destination, placeholder: job.destination, disabled: true, class: "job_edit_field" %>
+      		<%= f.text_field :cost, placeholder: job.cost, disabled: true, class: "job_edit_field" %>
+      		<%= f.text_field :load, placeholder: job.load, disabled: true, class: "job_edit_field" %>
+      	</ul>
+      </p>
+      <button class="edit_job">Edit Job</button>
+      <% end %>
+			<% if current_user %>
+				<h3>Quick Add</h3>
+				<%= form_with model: @contract do |f| %>
+					<%= f.hidden_field :job_id, value: job.id %>
+					<%= f.select(:boat_id) do %>
+						<option value="" disabled selected>Select a Ship</option>
+						<% current_user.boats.each do |boat| %>
+							<option value="<%= boat.id %>"><%= boat.name %> | Capacity: <%= boat.capacity %></option>
+						<% end %>
+					<% end %>
+					<%= f.submit "Add Boat" %>
+				<% end %>
+			<% end %>
+			<% if job.contracts.any? %>
+			<h3>Contracted Boats</h3>
+			<% end %>
+			<% container_count = 0 %>
+			<% job.contracts.each do |contract| %>
+				<p><%= contract.boat.name %> | Capacity: <%= contract.boat.capacity %> <%= link_to "Delete", contract_path(contract), method: :delete %></p>
+				<% container_count = contract.boat.capacity + container_count %>
+			<% end %>
+			<p>Containers left to ship: <%= job.load - container_count %></p>
+			<%= link_to "Delete Job", job_path(job), method: :delete, remote: true %>
+    </div>
+	</div>
+</div>

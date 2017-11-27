@@ -1,59 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ThirdRails</title>
+    <title>Nautify</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" />
   </head>
-
   <body>
     <div class="row">
       <div class="col">
-        <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark red">
-            <!-- Navbar brand -->
-            <%= link_to "Nautify", root_path, class: "navbar-brand" %>
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Links -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <%= link_to "Jobs", jobs_path, class: "nav-link" %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to "Boats", boats_path, class: "nav-link" %>
-                    </li>
-                    <!-- Dropdown -->
-                    <% if current_user %>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
-                            <%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "dropdown-item" %>
-                            <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-                        </div>
-                    </li>
-                    <% end %>
-                </ul>
-                <!-- Links -->
-                <!-- Search form -->
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                </form>
-            </div>
-            <!-- Collapsible content -->
+          <%= link_to "Nautify", root_path, class: "navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <%= link_to "Jobs", jobs_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Boats", boats_path, class: "nav-link" %>
+              </li>
+              <% if current_user %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
+                  <%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "dropdown-item" %>
+                  <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+                </div>
+              </li>
+              <% end %>
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+            </ul>
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </form>
+          </div>
         </nav>
       </div>
     </div>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
   </body>
 </html>
