@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-3 boat">
 	<div class="card">
     <div class="view overlay hm-white-slight">
      <%= image_tag boat.avatar.url(:medium) %>
@@ -18,6 +18,7 @@
       	</ul>
       </p>
       <button class="edit_boat">Edit Boat</button>
+      <%= f.submit "Save Boat", class: "save_boat" %>
       <% end %>
 			<% if current_user %>
 				<h3>Quick Add</h3>
@@ -37,9 +38,8 @@
 			<% end %>
 			<% container_count = 0 %>
 			<% boat.contracts.each do |contract| %>
-				<p><%= contract.job.name %> | Load: <%= contract.job.load %> <%= link_to "Delete", contract_path(contract), method: :delete %></p>
+				<p class="contract"><%= contract.job.name %> | Load: <%= contract.job.load %> <%= link_to "Delete", contract_path(contract), method: :delete, class: 'delete_contract', remote: true %></p>
 			<% end %>
-
 			<%= link_to "Delete Boat", boat_path(boat), method: :delete, remote: true %>
     </div>
 	</div>

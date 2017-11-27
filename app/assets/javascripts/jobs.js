@@ -3,8 +3,11 @@ $(document).on('turbolinks:load', function(){
   	$(this).closest('.job_edit_form').find('.job_edit_field').attr('disabled', false);
   	$('.save_job').show();
   });
-
-  $('.save_job').on('click', function(){
-  	$('.job_edit_form').submit();
+  $('.delete_job').on('ajax:success', function(){
+  	$(this).closest('.job').remove();
   })
+  $('.delete_contract').on('ajax:success', function(){
+  	$(this).closest('.contract').remove();
+  })
+  $('.contract_submit').on('')
 });
