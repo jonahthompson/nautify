@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-3 job">
 	<div class="card">
     <div class="view overlay hm-white-slight">
       <%= image_tag job.avatar.url(:medium) %>
@@ -27,13 +27,12 @@
       </p>
       <% if current_user %>
       <button class="edit_job">Edit Job</button>
-      <!-- <button class="save_job">Save Job</button> -->
       <%= f.submit "Save Job", class: "save_job" %>
       <% end %>
       <% end %>
 			<% if current_user %>
 				<h3>Quick Add</h3>
-				<%= form_with model: @contract do |f| %>
+				<%= form_with model: @contract, class: "contract_form" do |f| %>
 					<%= f.hidden_field :job_id, value: job.id %>
 					<%= f.select(:boat_id) do %>
 						<option value="" disabled selected>Select a Boat</option>
@@ -41,19 +40,16 @@
 							<option value="<%= boat.id %>"><%= boat.name %> | Capacity: <%= boat.capacity %></option>
 						<% end %>
 					<% end %>
-					<%= f.submit "Add Boat", class: "boat_submit" %>
+					<%= f.submit "Add Boat", class: "contract_submit" %>
 				<% end %>
 			<% end %>
 			<% if job.contracts.any? %>
 			<h3>Contracted Boats</h3>
 			<% end %>
-			<% container_count = 0 %>
 			<% job.contracts.each do |contract| %>
-				<p><%= contract.boat.name %> | Capacity: <%= contract.boat.capacity %> <%= link_to "Delete", contract_path(contract), method: :delete %></p>
-				<% container_count = contract.boat.capacity + container_count %>
+				<p class="contract"><%= contract.boat.name %> | Capacity: <%= contract.boat.capacity %> <%= link_to "Delete", contract_path(contract), method: :delete, remote: true, class: "delete_contract" %></p>
 			<% end %>
-			<p>Containers left to ship: <%= job.load - container_count %></p>
-			<%= link_to "Delete Job", job_path(job), method: :delete, remote: true %>
+			<%= link_to "Delete Job", job_path(job), method: :delete, remote: true, class: "delete_job" %>
     </div>
 	</div>
 </div>

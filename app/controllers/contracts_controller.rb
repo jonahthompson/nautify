@@ -1,11 +1,10 @@
 class ContractsController < ApplicationController
   def create
   	@contract = Contract.new(contract_params)
-  	if @contract.save
-      redirect_to current_user
-    else
-      render jobs_path
-    end 
+  	respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def update
@@ -17,7 +16,7 @@ class ContractsController < ApplicationController
   	respond_to do |format|
       @contract = Contract.find(params[:id]).destroy
       format.js
-      format.html {redirect_to current_user}
+      format.html
     end
   end
 

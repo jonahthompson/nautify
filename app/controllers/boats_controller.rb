@@ -41,7 +41,7 @@ class BoatsController < ApplicationController
     respond_to do |format|
       @boat = Boat.find(params[:id]).destroy
       format.js
-      format.html {redirect_to boats_path}
+      format.html
     end
   end
 
