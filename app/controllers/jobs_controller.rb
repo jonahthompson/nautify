@@ -33,7 +33,8 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     respond_to do |format|
       @job.update(job_params)
-      format.js {render jobs_path}
+      format.js 
+      format.html {render jobs_path}
     end
   end
 
