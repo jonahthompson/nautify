@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171125221752) do
     t.string "destination"
     t.integer "cost"
     t.integer "load"
-    t.integer "user_id"
+    t.integer "user_id"true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"

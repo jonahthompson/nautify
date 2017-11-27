@@ -1,4 +1,4 @@
 class Contract < ApplicationRecord
-  belongs_to :job, dependent: :destroy
-  belongs_to :boat, dependent: :destroy
+  belongs_to :job
+  belongs_to :boat
 end

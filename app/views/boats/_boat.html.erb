@@ -1,0 +1,46 @@
+<div class="col-3">
+	<div class="card">
+    <div class="view overlay hm-white-slight">
+     <%= image_tag boat.avatar.url(:medium) %>
+    </div>
+    <div class="card-body">
+    	<%= form_with model: boat, class: "boat_edit_form" do |f| %>
+      <h4 class="card-title"><%= boat.name %></h4>
+      <p class="card-text">
+      	<ul>
+      		<%= f.select(:location) do %>
+  					<option value="" disabled selected> <%= boat.location %></option>
+						<% [['Los Angeles, CA'], ['San Diego, CA'], ['Sydney, AU'], ['Tokyo, JP'], ['Tianjin, CN']].each do |c| %>
+							<option value="<%= c.first %>"><%= c.first %></option>
+   					<% end %>
+  				<% end %>
+      		<%= f.text_field :capacity, placeholder: boat.capacity, disabled: true, class: "boat_edit_field" %>
+      	</ul>
+      </p>
+      <button class="edit_boat">Edit Boat</button>
+      <% end %>
+			<% if current_user %>
+				<h3>Quick Add</h3>
+				<%= form_with model: @contract do |f| %>
+					<%= f.hidden_field :boat_id, value: boat.id %>
+					<%= f.select(:job_id) do %>
+						<option value="" disabled selected>Select a Job</option>
+						<% current_user.jobs.each do |job| %>
+							<option value="<%= job.id %>"><%= job.name %> | Load: <%= job.load %></option>
+						<% end %>
+					<% end %>
+					<%= f.submit "Add Job" %>
+				<% end %>
+			<% end %>
+			<% if boat.contracts.any? %>
+			<h3>Contracted Jobs</h3>
+			<% end %>
+			<% container_count = 0 %>
+			<% boat.contracts.each do |contract| %>
+				<p><%= contract.job.name %> | Load: <%= contract.job.load %> <%= link_to "Delete", contract_path(contract), method: :delete %></p>
+			<% end %>
+
+			<%= link_to "Delete Boat", boat_path(boat), method: :delete, remote: true %>
+    </div>
+	</div>
+</div>
