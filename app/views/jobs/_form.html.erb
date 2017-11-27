@@ -6,8 +6,9 @@
 	</ul>
 <% end %>
 
-<%= form_with model: @job, local: true do |f| %>
+<%= form_with model: @job, html: { multipart: true } do |f| %>
 <%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.text_field :name, placeholder: 'Name' %>
 	<%= f.text_field :description, placeholder: 'Description' %>
 	<%= f.text_field :cost, placeholder: 'Cost' %>
 	<%= f.text_field :load, placeholder: 'Load' %>
@@ -36,5 +37,4 @@
    	<% end %>
   <% end %>
 	<%= f.submit "Add Job", :class => "btn waves-effect waves-light blue darken-3" %>
-	
 <% end %>

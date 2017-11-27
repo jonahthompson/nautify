@@ -1,29 +1,24 @@
 <div class="card">
-  <!--Card image-->
   <div class="view overlay hm-white-slight">
-      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-      <a href="#">
-          <div class="mask"></div>
-      </a>
+    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
+    <a href="#">
+      <div class="mask"></div>
+    </a>
   </div>
-
-  <!--Card content-->
   <div class="card-body">
-      <!--Title-->
-      <h4 class="card-title"><%= @job.description %></h4>
-      <!--Text-->
-      <p class="card-text">
-      	<ul>
-      		<li>Origin: <%= @job.origin %></li>
-      		<li>Destination: <%= @job.destination %></li>
-      		<li>Cost: <%= @job.cost %></li>
-      		<li>Load: <%= @job.load %></li>
-      	</ul>
-      </p>
-			<% form_with contracts_path do |f| %>
-				<%= f.hidden_field :job_id %>
-				<%= f.submit "Submit" %>
-			<% end %>
+    <h4 class="card-title"><%= @job.description %></h4>
+    <p class="card-text">
+    	<ul>
+    		<li>Origin: <%= @job.origin %></li>
+    		<li>Destination: <%= @job.destination %></li>
+    		<li>Cost: <%= @job.cost %></li>
+    		<li>Load: <%= @job.load %></li>
+    	</ul>
+    </p>
+		<% form_with contracts_path do |f| %>
+			<%= f.hidden_field :job_id %>
+			<%= f.submit "Submit" %>
+		<% end %>
   </div>
 </div>
 

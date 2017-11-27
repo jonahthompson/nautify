@@ -10,10 +10,13 @@ class JobsController < ApplicationController
 
   def create
     @job = current_user.jobs.new(job_params)
-    if @job.save!
-      redirect_to jobs_path
-    else
-      render new_job_path
+    respond_to do |format|
+      @job.new(job_params)
+      if @job.save!
+        format.js
+      else
+        render new_job_path
+      end
     end 
   end
 
@@ -26,7 +29,7 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job = Boat.find(params[:id])
+    @job = Job.find(params[:id])
     respond_to do |format|
       @job.update(job_params)
       format.js
@@ -44,7 +47,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:description, :origin, :destination, :cost, :load, :user_id, :avatar)
+    params.require(:job).permit(:name, :description, :origin, :destination, :cost, :load, :user_id, :avatar)
   end
 end
 

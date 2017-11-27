@@ -1,7 +1,7 @@
 class ContractsController < ApplicationController
   def create
   	@contract = Contract.new(contract_params)
-  	if @contract.save!
+  	if @contract.save
       redirect_to current_user
     else
       render jobs_path

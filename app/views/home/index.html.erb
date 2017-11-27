@@ -1,30 +1,63 @@
 <div class="container-fluid parallax">
-    <div class="container">
-        <div class="row">
-        	<div class="col-6 jobs_col">
-        		<div class="card">
-        	    <h3 class="card-header color_light_blue white-text">Jobs</h3>
-        	    <div class="card-body">
-        	        <h4 class="card-title">Got a boat? Need a job?</h4>
-        	        <p class="card-text">Browse hundreds of contracts and find the right job for your boat.</p>
-        	        <%= link_to "Browse Jobs", jobs_path, class: 'btn color_light_blue' %>
-        	    </div>
-        		</div>
-        	</div>
-        	<div class="col-6 boats_col">
-        		<div class="card">
-        		  <h3 class="card-header color_blue white-text">Boats</h3>
-        		  <div class="card-body">
-        		      <h4 class="card-title">Got a job? Need a boat?</h4>
-        		      <p class="card-text">Browse hundreds of boats and find the right boat for your job.</p>
-        		      <%= link_to "Browse Boats", boats_path, class: 'btn color_blue' %>
-        		  </div>
-        		</div>
-        	</div>
-        </div>
-    </div>
+  <div class="container">
+    <div class="row">
+	  	<div class="col-6 jobs_col">
+	  		<div class="card">
+	  	    <h3 class="card-header color_light_blue white-text">Jobs</h3>
+	  	    <div class="card-body">
+  	        <h4 class="card-title">Got a boat? Need a job?</h4>
+  	        <p class="card-text">Browse hundreds of contracts and find the right job for your boat.</p>
+  	        <%= link_to "Browse Jobs", jobs_path, class: 'btn color_light_blue' %>
+	  	    </div>
+	  		</div>
+	  	</div>
+	  	<div class="col-6 boats_col">
+	  		<div class="card">
+	  		  <h3 class="card-header color_blue white-text">Boats</h3>
+	  		  <div class="card-body">
+  		      <h4 class="card-title">Got a job? Need a boat?</h4>
+  		      <p class="card-text">Browse hundreds of boats and find the right boat for your job.</p>
+  		      <%= link_to "Browse Boats", boats_path, class: 'btn color_blue' %>
+	  		  </div>
+	  		</div>
+	  	</div>
+	  </div>
+  </div>
 </div>
 <div class="home_content">
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <%= link_to "New User", new_user_registration_path %>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<h1 class="welcome">Welcome to Nautify</h1>
+				<h5 class="welcome">Nautify is the world's largest online-based nautical management hub, and makes doing business easier for you.</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-5">
+				<div class="card">
+			    <div class="card-body">
+		        <h4 class="card-title">Who We Are</h4>
+		        <h5 class="card-text">Nautify is a place where business happens. Every day, millions of users from around the globe rely on Nautify's sophisticated management system to save them time, and therefore money, by simplifying the process of pairing ships with jobs, and creating reliable contracts for both owning parties.</h5>
+			    </div>
+				</div>
+			</div>
+			<div class="col-5">
+				<div class="card">
+			    <div class="card-body">
+		        <h4 class="card-title">What We Do</h4>
+		        <h5 class="card-text">Our job is simple. Pair boats with jobs and create a contract that provides assurance for both parties, without any additional interference. By utilizing a cross-validated online management system, Nautify takes the guesswork out of vetting a potential business partner and allows you to proceed directly to finding the right boat or job for your needs.</h5>
+			    </div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+		<div class="row">
+			<div class="col-5"></div>
+			<div class="col-2">
+				<%= link_to "Sign Up", new_user_registration_path, class: "btn red sign_up_home" %>
+			</div>
+			<div class="col-5"></div>
+		</div>
+	</div>
 </div>

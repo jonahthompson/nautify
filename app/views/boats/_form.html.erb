@@ -6,7 +6,7 @@
 	</ul>
 <% end %>
 
-<%= form_with model: @boat, local: true do |f| %>
+<%= form_with model: @boat, html: { multipart: true }, local: true do |f| %>
 <%= f.hidden_field :user_id, value: current_user.id %>
 	<%= f.text_field :name, placeholder: 'Name' %>
 	<%= f.text_field :capacity, placeholder: 'Capacity' %>
@@ -15,7 +15,7 @@
     <% if @boat.avatar.file? %>
       <p>Your current image: </p>
       <%= image_tag current_user.avatar.url(:medium) %>
-      <% end %>
+    	<% end %>
       <%= f.file_field :avatar %>
   </div>
 
@@ -26,5 +26,5 @@
 			<option value="<%= c.first %>"><%= c.first %></option>
    	<% end %>
   <% end %> <br/>
-	<%= f.submit "Add Ship To Inventory", :class => "btn waves-effect waves-light blue darken-3" %>
+	<%= f.submit "Add Ship To Inventory", class: "btn waves-effect waves-light blue darken-4" %>
 <% end %>
