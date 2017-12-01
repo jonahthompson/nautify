@@ -5,8 +5,8 @@
     		<div class="card">
     	    <h3 class="card-header color_light_blue white-text">My Jobs</h3>
     	    <div class="card-body">
-  	        <h4 class="card-title">Got a boat? Need a job?</h4>
-  	        <p class="card-text">Browse hundreds of contracts and find the right job for your boat.</p>
+  	        <h4 class="card-title">Here you can see your jobs and their associated boats</h4>
+  	        <p class="card-text"></p>
   	        <%= link_to "My Jobs", jobs_path, class: 'btn color_light_blue' %>
     	    </div>
     		</div>
@@ -15,8 +15,8 @@
     		<div class="card">
     		  <h3 class="card-header color_blue white-text">My Boats</h3>
     		  <div class="card-body">
-  		      <h4 class="card-title">Got a job? Need a boat?</h4>
-  		      <p class="card-text">Browse hundreds of boats and find the right boat for your job.</p>
+  		      <h4 class="card-title">Here you can see your boats and their associated jobs</h4>
+  		      <p class="card-text"></p>
   		      <%= link_to "My Boats", boats_path, class: 'btn color_blue' %>
     		  </div>
     		</div>
@@ -24,7 +24,16 @@
     </div>
   </div>
 </div>
-<div class="home_content">
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  <%= link_to "New User", new_user_registration_path %>
+<div class="container-fluid">
+  <div class="home_content">
+    <h1>Overview</h1>
+    <div class="row">
+      <% @jobs.each do |job| %>
+        <%= render job %>
+      <% end %>
+      <% @boats.each do |boat| %>
+        <%= render boat %>
+      <% end %>
+    </div>
+  </div>
 </div>
