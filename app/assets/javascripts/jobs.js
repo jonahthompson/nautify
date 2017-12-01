@@ -5,9 +5,8 @@ $(document).on('turbolinks:load', function(){
   });
   $('.delete_job').on('ajax:success', function(){
   	$(this).closest('.job').remove();
-  })
+  });
   $('.delete_contract').on('ajax:success', function(){
   	$(this).closest('.contract').remove();
-  })
-  $('.contract_submit').on('')
+  });
 });
