@@ -16,7 +16,6 @@ cancel_user_registration GET    /users/cancel(.:format)        users/registratio
                          POST   /users(.:format)               users/registrations#create
                     root GET    /                              home#index
                    users GET    /users(.:format)               users#index
-                    user GET    /users/:id(.:format)           users#show
                    boats GET    /boats(.:format)               boats#index
                          POST   /boats(.:format)               boats#create
                 new_boat GET    /boats/new(.:format)           boats#new

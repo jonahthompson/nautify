@@ -1,10 +1,5 @@
-$('#' + window.job_section).find('.contract').append(`
-	<%= @boat.name %> <%= link_to contract_path, method: :delete, remote: true %>
-	`);
-$('.new_boat_job').trigger('reset');
-
-
-$('#' + window.boat_section).find('.boat_jobs').append(`
-	<%= @job.name %> <%= link_to image_tag("delete.png", class: "format_small"), destroy_boat_job_path(boat_id: @boat.id, job_id: @job.id),  method: :delete, remote: true %>
-	`);
-$('.new_job_boat').trigger('reset');
+if (window.contract_section[0] === 'j') {
+	$('#' + window.contract_section).find('.contracts').html(`<%= j render 'jobs/job_contracts', job: @contract.job %>`);
+} else {
+$('#' + window.contract_section).find('.contracts').html(`<%= j render 'boats/boat_contracts', boat: @contract.boat %>`);
+}

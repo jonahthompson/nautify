@@ -6,7 +6,4 @@ $(document).on('turbolinks:load', function(){
   $('.delete_boat').on('ajax:success', function(){
   	$(this).closest('.boat').remove();
   });
-  $('.delete_contract').on('ajax:success', function(){
-  	$(this).closest('.contract').remove();
-  });
 });

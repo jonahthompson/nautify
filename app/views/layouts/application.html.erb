@@ -3,7 +3,6 @@
   <head>
     <title>Nautify</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" />
@@ -27,7 +26,6 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                  <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
                   <%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "dropdown-item" %>
                   <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
                 </div>

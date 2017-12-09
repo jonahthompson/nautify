@@ -2,6 +2,7 @@ class BoatsController < ApplicationController
   def index
     @boats = Boat.all
     @contract = Contract.new
+    @boat = @contract.boat
   end
 
   def new
