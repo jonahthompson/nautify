@@ -4,8 +4,6 @@
 
 * System dependencies: Latest version of Google Chrome
 
-* Required gems: Devise, Paperclip
+* Required gems: Devise, Paperclip, MDBootstrap
 
-* Database creation: Create your own sucka
-
-* Database initialization: Initialize that thing
+* Database creation: I used SQLite but do what thou wilt
