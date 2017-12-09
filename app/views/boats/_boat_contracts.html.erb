@@ -1,0 +1,5 @@
+<ul class="contracts">
+	<% boat.contracts.each do |contract| %>
+		<p class="contract"><%= contract.job.name %> | Load: <%= contract.job.load %> <%= link_to "Delete", contract_path(contract), method: :delete, class: 'delete_contract', remote: true %></p>
+	<% end %>
+</ul>

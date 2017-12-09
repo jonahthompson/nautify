@@ -1,4 +1,4 @@
-<div class="col-3 job" id="<%= job.id %>">
+<div class="col-3 job" id="job-<%= job.id %>">
 	<div class="card">
     <div class="view overlay hm-white-slight">
       <%= image_tag job.avatar.url(:medium) %>
@@ -32,7 +32,7 @@
       <% end %>
 			<% if current_user %>
 				<h3>Quick Add</h3>
-				<%= form_with model: @contract, class: "contract_form" do |f| %>
+				<%= form_with model: @contract, class: "contract_form", data: {"reference-id": "job-#{job.id}"} do |f| %>
 					<%= f.hidden_field :job_id, value: job.id %>
 					<%= f.select(:boat_id) do %>
 						<option value="" disabled selected>Select a Boat</option>
@@ -46,9 +46,9 @@
 			<% if job.contracts.any? %>
 			<h3>Contracted Boats</h3>
 			<% end %>
-			<% job.contracts.each do |contract| %>
-				<p class="contract"><%= contract.boat.name %> | Capacity: <%= contract.boat.capacity %> <%= link_to "Delete", contract_path(contract), method: :delete, remote: true, class: "delete_contract" %></p>
-			<% end %>
+      <div class="contracts_container">
+        <%= render 'jobs/job_contracts', job: job %>
+      </div>
 			<%= link_to "Delete Job", job_path(job), method: :delete, remote: true, class: "delete_job" %>
     </div>
 	</div>

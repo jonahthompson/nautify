@@ -1,6 +1,9 @@
 class ContractsController < ApplicationController
   def create
   	@contract = Contract.new(contract_params)
+    @contract.save
+    @boat = @contract.boat
+    @job = @contract.job
   	respond_to do |format|
       format.js
       format.html
